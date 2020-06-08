@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Умовний оператор</title>
+</head>
+<body>
+<script>
+
+    // MARK: - User Input
+
+    let input = prompt("Enter string");
+    let longestWords = findLongestWords(input);
+
+    let result = removeFromString(longestWords, input);
+    document.write(`Result: ${result}`);
+
+    function findLongestWords(str) {
+        let words = str.split(/\W+/);
+        let sortedWords = words.sort(function(a, b) {
+            return b.length - a.length;
+        })
+
+        let maxLength = sortedWords[0].length;
+        return words.filter(word => word.length >= maxLength);
+    }
+
+    function removeFromString(arr, str){
+        let regex = new RegExp("\\b"+arr.join('|')+"\\b","gi")
+        return str.replace(regex, '')
+    }
+</script>
+</body>
+</html>

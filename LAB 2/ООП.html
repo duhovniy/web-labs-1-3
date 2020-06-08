@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ООП</title>
+</head>
+<body>
+<script>
+
+    class Time {
+
+        // MARK: - Initialization
+
+        constructor(hours, minutes, seconds) {
+            this.hours = hours;
+            this.minutes = minutes;
+            this.seconds = seconds;
+        }
+
+        // MARK: - Methods
+
+        convertedToDate() {
+            let date = new Date();
+            date.setHours(this.hours);
+            date.setMinutes(this.minutes);
+            date.setSeconds(this.seconds);
+            date.setMilliseconds(0);
+
+            return date;
+        }
+
+        totalMinutes() {
+            return (this.hours * 60) + this.minutes + (this.seconds / 60);
+        }
+
+        minutesTillMidnight() {
+            let midnight = new Date();
+            midnight.setHours( 24 );
+            midnight.setMinutes( 0 );
+            midnight.setSeconds( 0 );
+            midnight.setMilliseconds( 0 );
+
+            return ( midnight.getTime() - this.convertedToDate()) / 1000 / 60;
+        }
+
+        description() {
+            return `Description: hours (${this.hours}), minutes (${this.minutes}), seconds (${this.seconds})`
+        }
+    }
+
+    // MARK: - User Input
+
+    let hours = parseInt(prompt("Enter hours:"));
+    let minutes = parseInt(prompt("Enter minutes:"));
+    let seconds = parseInt(prompt("Enter seconds:"));
+
+    let time = new Time(hours, minutes, seconds);
+    document.write(time.description());
+    document.write("</br>Minutes: " + time.totalMinutes());
+    document.write("</br>Minutes till midnight: " + time.minutesTillMidnight());
+
+</script>
+</body>
+</html>

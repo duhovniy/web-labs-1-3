@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Умовний оператор</title>
+</head>
+<body>
+<script>
+
+    // MARK: - User Input
+
+    let n = parseInt(prompt("Enter N:"));
+    let m = parseInt(prompt("Enter M:"));
+
+    let array = [[]];
+
+    document.write("Array: </br>");
+    for(let i = 0; i < n; i++) {
+        array[i] = []
+        for(let j = 0; j < m; j++) {
+            array[i][j] = Math.round(getRandomArbitrary(-10, 10));
+            document.write(array[i][j] + " ");
+        }
+        document.write("</br>");
+    }
+
+    // MARK: - Logic
+
+    let result = [];
+
+    for(let i = 0; i < n; i++) {
+        let posNum = 0;
+        let negNum = 0;
+
+        for(let j = 0; j < m; j++) {
+            let curr = array[i][j];
+            curr >= 0 ? posNum++ : negNum++;
+        }
+        result.push(negNum > posNum);
+    }
+
+    document.write(`Result: ${result}`);
+
+    // MARK: - Methods
+
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+ 	<title>Елементарні оператори</title>
+</head>
+<body>
+<script type="text/javascript">
+
+	// MARK: Parsing
+
+	var x = parseInt(prompt("Введіть x:"))
+ 	var y = parseInt(prompt("Введіть y:"))
+
+	// MARK: - Main part
+
+	var f1 = Math.sqrt(Math.pow((2 + y), 2) + Math.sqrt(Math.sin(y + 5)))
+	var f2 = Math.log(x + 1) - Math.pow(y,  3)
+
+	// MARK: - Result
+
+	var result = (f1 / f2).toFixed(3)
+	document.write("Результат: " + result)
+	
+</script>
+</body>
+</html>

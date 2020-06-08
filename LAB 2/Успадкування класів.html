@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ООП</title>
+</head>
+<body>
+<script>
+
+    class Time {
+
+        // MARK: - Initialization
+
+        constructor(hours, minutes, seconds) {
+            this.hours = hours;
+            this.minutes = minutes;
+            this.seconds = seconds;
+        }
+
+        // MARK: - Methods
+
+        convertedToDate() {
+            let date = new Date();
+            date.setHours(this.hours);
+            date.setMinutes(this.minutes);
+            date.setSeconds(this.seconds);
+            date.setMilliseconds(0);
+
+            return date;
+        }
+
+        description() {
+            return `Description: hours (${this.hours}), minutes (${this.minutes}), seconds (${this.seconds})`
+        }
+    }
+
+    class TrainDepartureSchedule extends Time {
+
+        // MARK: - Initialization
+
+        constructor(trainNumber, destination, departureTime) {
+            super(departureTime.hours, departureTime.minutes, departureTime.seconds);
+            this.trainNumber = trainNumber;
+            this.destination = destination;
+        }
+
+        // MARK: - API
+
+        timeTillDepature() {
+            return ( this.convertedToDate() - new Date().getTime()) / 1000 / 60;
+        }
+
+        description() {
+            let time = `${this.fillZeroes(this.hours, 2)}:${this.fillZeroes(this.minutes, 2)}:${this.fillZeroes(this.seconds, 2)}`
+            return `Train number ${this.trainNumber} departure to ${this.destination} at ${time}`
+        }
+
+        // MARK: Internal
+
+        fillZeroes(n = 0, m = 1) {
+            const p = Math.max(1, m);
+            return String(n).replace(/\d+/, x => '0'.repeat(Math.max(p - x.length, 0)) + x);
+        }
+    }
+
+    // MARK: - User Input
+
+    let hours = parseInt(prompt("Enter hours:"));
+    let minutes = parseInt(prompt("Enter minutes:"));
+    let seconds = parseInt(prompt("Enter seconds:"));
+
+    let departureTime = new Time(hours, minutes, seconds);
+    let trainDepartureSchedule = new TrainDepartureSchedule(128, "Kiev", departureTime);
+
+    document.write(trainDepartureSchedule.description());
+    document.write("</br>Minutes till departure: " + trainDepartureSchedule.timeTillDepature());
+
+</script>
+</body>
+</html>

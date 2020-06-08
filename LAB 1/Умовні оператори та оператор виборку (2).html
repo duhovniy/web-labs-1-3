@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Умовний оператор</title>
+</head>
+<body>
+<script>
+
+    // MARK: - User Input
+    
+    let x = parseFloat(prompt("Enter X:"));
+    let y = parseFloat(prompt("Enter Y:"));
+    let z = parseFloat(prompt("Enter Z:"));
+    let k = parseInt(prompt("Enter K:"));
+
+    // MARK: - Logic
+
+    let result;
+
+    switch(true) {
+    case k == 1:
+        result = k + Math.max(x, y, z);
+        break;
+    case k == 2:
+        result = k + Math.max(Math.pow(x, 2), Math.pow(y, 2), Math.pow(z, 2));
+        break;
+    case between(k, 30, 32):
+        result = k + Math.min(x, y, z);
+        break;
+    default:
+        let xyz = Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2);
+        result = Math.pow(k, 2) + Math.pow(xyz, 2)
+        break;
+    }
+
+    document.write(`Result: ${result}`);
+
+    // MARK: - Methods
+
+    function between(value, first, last) {
+        let lower = Math.min(first,  last), upper = Math.max(first, last);
+        return value >= lower &&  value <= upper;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Умовний оператор</title>
+</head>
+<body>
+<script>
+
+    // MARK: - User Input
+    
+    let a = parseInt(prompt("Enter A:"));
+    let x = parseInt(prompt("Enter X:"));
+
+    let eps = parseFloat(prompt("Enter EPS:"));
+
+    // MARK: - Logic
+
+    let step = 0;
+    let current  = calculateStep(step, a, x);
+    let result = current;
+
+    while(Math.abs(current) > eps) {
+        step++;
+        current = calculateStep(step, a, x);
+        result += current;
+    }
+
+    document.write(`Result: ${result}`);
+    
+    // MARK: - Methods
+    
+    function calculateStep(step, a, x) {
+        return  Math.pow(Math.log(a + x), 2 * step) / (Math.pow(2, step) + factorial(step));
+    }
+
+    function factorial(n, r = 1) {
+        while (n > 0) r *= n--;
+        return r;
+    }
+
+</script>
+</body>
+</html>

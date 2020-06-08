@@ -1,0 +1,110 @@
+<html>
+<head>
+    <script>
+
+        class SDate {
+
+            constructor(day, month, year) {
+                this.day = day;
+                this.month = month;
+                this.year = year;
+            }
+
+            // MARK: - API
+
+            compactOutput() {
+                var p = document.createElement('p');
+                p.innerHTML = `${this.fillZeroes(this.day, 2)}:${this.fillZeroes(this.month, 2)}:${this.fillZeroes(this.year, 2)}`;
+                p.classList.add('compactOutput');
+
+                document.body.appendChild(p);
+            }
+
+            extendedOutput(color) {
+                var date = new Date(Date.UTC(this.year, this.month, this.day, 0, 0, 0));
+                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+                var p = document.createElement('p');
+                p.innerHTML = date.toLocaleDateString('uk-UA', options);
+                p.classList.add('extendedOutput');
+
+                document.body.appendChild(p);
+            }
+
+            color(color, className) {
+                var element = document.getElementsByClassName(className)[0];
+                element.style.color = color
+            }
+
+            randomColor(className) {
+                var element = document.getElementsByClassName(className)[0];
+                element.style.color = this.randColor();
+            }
+
+            // MARK: - Getters
+
+            getDay() {
+                return this.day;
+            }
+
+            getMonth() {
+                return this.month;
+            }
+
+            getYear() {
+                return this.month;
+            }
+
+            // MARK: - Setters
+
+            setDay(newValue) {
+                if (newValue > 31 || newValue < 1) {
+                    console.error("Invalid new value for day");
+                }
+                this.day = newValue;
+            }
+
+            setMonth(newValue) {
+                if (newValue > 12 || newValue < 1) {
+                    console.error("Invalid new value for month");
+                }
+                this.month = newValue;
+            }
+
+            setYear(newValue) {
+                if (!Number.isInteger(newValue)) {
+                    console.error("Invalid new value for year");
+                }
+                this.year = newValue;
+            }
+
+            // MARK: - Helpers
+
+            randColor() {
+                for (var i=0, col=''; i<6; i++) {
+                    col += (Math.random()*16|0).toString(16);
+                }
+                return '#'+col;
+            }
+
+            fillZeroes(n = 0, m = 1) {
+                const p = Math.max(1, m);
+                return String(n).replace(/\d+/, x => '0'.repeat(Math.max(p - x.length, 0)) + x);
+            }
+        }
+
+        window.onload = function() {
+            let date = new SDate(10, 5, 2020);
+            date.compactOutput();
+            date.extendedOutput();
+
+            date.color("blue", "compactOutput");
+            date.randomColor("extendedOutput");
+        }
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>

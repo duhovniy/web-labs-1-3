@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Умовний оператор</title>
+</head>
+<body>
+<script>
+
+    // MARK: - User Input
+
+    let x = parseInt(prompt("Enter X:"));
+    let y = parseInt(prompt("Enter Y:"));
+    let z = parseInt(prompt("Enter Z:"));
+    let a = parseInt(prompt("Enter A:"));
+    let b = parseInt(prompt("Enter B:"));
+    let c = parseInt(prompt("Enter C:"));
+    let d = parseInt(prompt("Enter D:"));
+
+    // MARK: - Logic
+
+    let result;
+
+    switch(true) {
+
+        case between(x, c, d) && between(y, c, d) && between(z, c, d):
+            let absX = Math.abs(x);
+            let absY = Math.abs(y);
+            let absZ = Math.abs(z);
+
+            result = Math.max(absX, absY, absZ);
+            break;
+
+        case !between(x, c, d) && !between(y, c, d) && !between(z, c, d):
+            result = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+            break;
+
+        default:
+            result = Math.min(Math.pow(x, 2), Math.pow(y, 2), Math.pow(z, 2));
+            break;
+    }
+
+    document.write(`Result: ${result}`);
+
+    // MARK: - Methods
+
+    function between(value, first, last) {
+        let lower = Math.min(first,  last), upper = Math.max(first, last);
+        return value >= lower &&  value <= upper;
+    }
+</script>
+</body>
+</html>

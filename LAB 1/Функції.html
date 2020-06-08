@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Умовний оператор</title>
+</head>
+<body>
+<script>
+
+    // MARK: - User Input
+
+    let n = parseInt(prompt("Enter N:"));
+    let m = parseInt(prompt("Enter M:"));
+
+    let matrix2D = [[]];
+
+    document.write("Array: </br>");
+    for(let section = 0; section < n; section++) {
+        matrix2D[section] = [];
+        for(let row = 0; row < m; row++) {
+            matrix2D[section][row] = Math.round(getRandomArbitrary(-10, 10));
+            document.write(matrix2D[section][row] + " ");
+        }
+        document.write("</br>");
+    }
+
+    let sectionSums = matrix2D.map(function(row) {
+        return reduce(row);
+    })
+
+    sort2DimensionalArray(matrix2D);
+
+    document.write("Sorted array: </br>");
+    for(let section = 0; section < n; section++) {
+        for(let row = 0; row < m; row++) {
+            document.write(matrix2D[section][row] + " ");
+        }
+        document.write("</br>");
+    }
+
+    // MARK: - Methods
+
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    function reduce(array) {
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        return array.reduce(reducer);
+    }
+    
+    function sort2DimensionalArray(array) {
+        array.sort(function (a, b) {
+            return reduce(a)-reduce(b);
+        });
+    }
+</script>
+</body>
+</html>
